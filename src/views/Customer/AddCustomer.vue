@@ -33,15 +33,18 @@
         ></el-cascader>
       </el-form-item>
       <el-form-item>
-        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">保存</el-button>
-        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">重置</el-button>
+        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">
+          保存
+        </el-button>
+        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">
+          重置
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'AddUser',
   props: {},
@@ -105,7 +108,7 @@ export default {
       .then((res) => {
         this.tree = res.data.body.resultMap
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
       })
   },
@@ -148,7 +151,7 @@ export default {
                   })
                 }
               })
-              .catch(err => {
+              .catch((err) => {
                 console.log(err)
               })
           } else {
@@ -169,7 +172,7 @@ export default {
                   })
                 }
               })
-              .catch(err => {
+              .catch((err) => {
                 console.log(err)
               })
           }
@@ -182,5 +185,6 @@ export default {
   },
 }
 </script>
+
 <style lang="less" scoped>
 </style>

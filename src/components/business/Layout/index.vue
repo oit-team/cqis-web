@@ -1,9 +1,9 @@
 <template>
   <el-container class="page-container" direction="vertical">
-    <vc-header :menu-list="menuList" :active-index="activeIndex"/>
+    <VcHeader :menu-list="menuList" :active-index="activeIndex" />
     <el-container class="overflow-hidden">
-      <vc-aside ref="elaside"/>
-      <vc-main ref="elmain" class="scrollbar test"/>
+      <VcAside ref="elaside" />
+      <VcMain ref="elmain" class="scrollbar test" />
     </el-container>
   </el-container>
 </template>

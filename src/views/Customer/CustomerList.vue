@@ -1,6 +1,6 @@
 <template>
   <div id="customerList" class="pageCommonStyle">
-    <vc-search
+    <VcSearch
       ref="child"
       :head-tit-arr="headTitArr"
       :page-num="pageNum"
@@ -10,9 +10,11 @@
       @sendData="showChildData"
     />
     <div class="operateBtn">
-      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" icon="el-icon-plus" type="primary" @click="addMenu">新增坐席</el-button>
+      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" icon="el-icon-plus" type="primary" @click="addMenu">
+        新增坐席
+      </el-button>
     </div>
-    <el-divider/>
+    <el-divider />
     <el-table
       v-loading="loading"
       element-loading-text="拼命加载中..."
@@ -26,12 +28,12 @@
         width="50"
       />
       <el-table-column
-        v-for="(item,index) in headTitArrNew"
+        v-for="(item, index) in headTitArrNew"
         :key="index"
         show-overflow-tooltip
         sortable
         :min-width="GLOBAL.minCellWidth"
-        :width="item.fieldKey==='landlineNum'?'160px':''"
+        :width="item.fieldKey === 'landlineNum' ? '160px' : ''"
         :prop="item.fieldKey"
         :label="item.fieldName"
       />
@@ -48,7 +50,7 @@
               icon="el-icon-edit"
               class="editBtnOnly"
               circle
-              @click="editCustomerItem(scope.row,scope.$index)"
+              @click="editCustomerItem(scope.row, scope.$index)"
             />
           </el-tooltip>
           <el-tooltip v-if="btnRole.indexOf(GLOBAL.btnRole.DelBtn) != -1" class="item" effect="dark" content="删除" placement="top">
@@ -58,7 +60,7 @@
               icon="el-icon-delete"
               class="delBtnOnly"
               circle
-              @click="delCustomerItem(scope.row,scope.$index)"
+              @click="delCustomerItem(scope.row, scope.$index)"
             />
           </el-tooltip>
         </template>
@@ -138,7 +140,7 @@ export default {
   },
   mounted() {
     this.pageNum = 1
-    this.dynamicParam.forEach(el => {
+    this.dynamicParam.forEach((el) => {
       if (el.key === 'pageNum') {
         el.value = this.pageNum
       }
@@ -197,7 +199,7 @@ export default {
             }
             if (_this.tableData.length === 0 && _this.total > 0) {
               _this.pageNum -= 1
-              _this.dynamicParam.forEach(el => {
+              _this.dynamicParam.forEach((el) => {
                 if (el.key === 'pageNum') {
                   el.value = _this.pageNum
                 }
@@ -237,7 +239,7 @@ export default {
     },
     handleSizeChange(val) {
       this.pageSize = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageSize') {
           el.value = this.pageSize
         }
@@ -246,7 +248,7 @@ export default {
     },
     handleCurrentChange(val) {
       this.pageNum = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageNum') {
           el.value = this.pageNum
         }

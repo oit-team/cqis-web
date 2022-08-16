@@ -5,10 +5,12 @@
         <div class="itemBox">
           <div v-for="(item, index) in headArr" :key="index">
             <div v-if="!item.noSearchShow" class="searchItem">
-              <div v-if="item.fieldType=='文本'">
-                <div v-if="item.fieldType=='文本'" class="searchTit">{{ item.fieldName }}</div>
+              <div v-if="item.fieldType == '文本'">
+                <div v-if="item.fieldType == '文本'" class="searchTit">
+                  {{ item.fieldName }}
+                </div>
                 <el-input
-                  v-if="item.fieldType=='文本'"
+                  v-if="item.fieldType == '文本'"
                   v-model="item.searchValKey"
                   placeholder="请输入搜索内容"
                   prefix-icon="el-icon-search"
@@ -16,10 +18,12 @@
                   @keyup.enter.native="clickSearch()"
                 />
               </div>
-              <div v-if="item.fieldType=='值列'">
-                <div v-if="item.fieldType=='值列'" class="searchTit">{{ item.fieldName }}</div>
+              <div v-if="item.fieldType == '值列'">
+                <div v-if="item.fieldType == '值列'" class="searchTit">
+                  {{ item.fieldName }}
+                </div>
                 <el-select
-                  v-if="item.fieldType=='值列'"
+                  v-if="item.fieldType == '值列'"
                   v-model="item.searchValKey"
                   clearable
                   placeholder="请选择"
@@ -33,10 +37,12 @@
                   />
                 </el-select>
               </div>
-              <div v-if="item.fieldType=='日期'">
-                <div v-if="item.fieldType=='日期'" class="searchTit">{{ item.fieldName }}</div>
+              <div v-if="item.fieldType == '日期'">
+                <div v-if="item.fieldType == '日期'" class="searchTit">
+                  {{ item.fieldName }}
+                </div>
                 <el-date-picker
-                  v-if="item.fieldType=='日期'"
+                  v-if="item.fieldType == '日期'"
                   v-model="item.searchValKey"
                   type="daterange"
                   value-format="yyyy-MM-dd"
@@ -46,10 +52,12 @@
                   @change="onChange"
                 />
               </div>
-              <div v-if="item.fieldType=='时间'">
-                <div v-if="item.fieldType=='时间'" class="searchTit">{{ item.fieldName }}</div>
+              <div v-if="item.fieldType == '时间'">
+                <div v-if="item.fieldType == '时间'" class="searchTit">
+                  {{ item.fieldName }}
+                </div>
                 <el-time-picker
-                  v-if="item.fieldType=='时间'"
+                  v-if="item.fieldType == '时间'"
                   v-model="item.searchValKey"
                   is-range
                   value-format="HH:mm"
@@ -59,10 +67,12 @@
                   placeholder="选择时间范围"
                 />
               </div>
-              <div v-if="item.fieldType=='日期时间'">
-                <div v-if="item.fieldType=='日期时间'" class="searchTit">{{ item.fieldName }}</div>
+              <div v-if="item.fieldType == '日期时间'">
+                <div v-if="item.fieldType == '日期时间'" class="searchTit">
+                  {{ item.fieldName }}
+                </div>
                 <el-date-picker
-                  v-if="item.fieldType=='日期时间'"
+                  v-if="item.fieldType == '日期时间'"
                   v-model="item.searchValKey"
                   type="datetime"
                   value-format="yyyy-MM-dd HH:mm:ss"
@@ -81,8 +91,12 @@
       </div>
     </div>
     <div class="searchBtnBox">
-      <el-button size="small" icon="el-icon-refresh" type="primary" @click="clickSearch()">查询</el-button>
-      <el-button size="small" icon="el-icon-close" type="info" @click="clearSearch()">清空</el-button>
+      <el-button size="small" icon="el-icon-refresh" type="primary" @click="clickSearch()">
+        查询
+      </el-button>
+      <el-button size="small" icon="el-icon-close" type="info" @click="clearSearch()">
+        清空
+      </el-button>
     </div>
   </div>
 </template>
@@ -172,7 +186,7 @@ export default {
     searchList() {
       this.$emit('changeLoading', true)
       let con1 = ''
-      this.headArr.forEach(el => {
+      this.headArr.forEach((el) => {
         if (el.searchValKey) {
           if (el.fieldType === '日期') {
             con1 += `"start${el.fieldKey}":"${el.searchValKey[0]}","end${el.fieldKey}":"${el.searchValKey[1]}",`
@@ -232,13 +246,13 @@ export default {
     clearSearch(curCmd) {
       const PageNum = curCmd || 1
       this.$emit('changeLoading', true)
-      this.pMsg.forEach(el => {
+      this.pMsg.forEach((el) => {
         if (el.key === 'pageNum') {
           el.value = PageNum
         }
       })
       let con1 = ''
-      this.headArr.forEach(el => {
+      this.headArr.forEach((el) => {
         if (el.searchValKey) {
           this.$set(el, 'searchValKey', '')
           if (el.fieldType === '日期') {
@@ -298,6 +312,7 @@ export default {
   },
 }
 </script>
+
 <style scoped lang="scss">
 .common-search{
     position: relative;

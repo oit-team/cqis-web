@@ -1,7 +1,7 @@
 <template>
   <div id="addRole" class="pageCommonStyle">
-    <el-page-header :content="title" @back="goBack"/>
-    <el-divider/>
+    <el-page-header :content="title" @back="goBack" />
+    <el-divider />
     <el-form
       ref="ruleForm"
       style="margin-top: 20px"
@@ -11,7 +11,7 @@
       label-position="left"
     >
       <el-form-item label="菜单名称" prop="menuName">
-        <el-input v-model="ruleForm.menuName" placeholder="请输入菜单名称" style="width:60%;"/>
+        <el-input v-model="ruleForm.menuName" placeholder="请输入菜单名称" style="width:60%;" />
       </el-form-item>
       <el-form-item label="父级菜单" prop="path">
         <el-cascader
@@ -19,7 +19,7 @@
           :disabled="editFlag"
           placeholder="请选择父级菜单(不选默认添加根菜单)"
           :options="menuOptions"
-          :props="{ checkStrictly: true, value: 'menuId', label: 'menuName', children: 'childrenMenu'}"
+          :props="{ checkStrictly: true, value: 'menuId', label: 'menuName', children: 'childrenMenu' }"
           clearable
         />
       </el-form-item>
@@ -32,7 +32,7 @@
           @change="changeMenuType"
         >
           <el-option
-            v-for="(item,index) in typeList"
+            v-for="(item, index) in typeList"
             :key="index"
             :label="item.label"
             :value="item.key"
@@ -40,16 +40,16 @@
         </el-select>
       </el-form-item>
       <el-form-item label="菜单路径" prop="menuUrl">
-        <el-input v-model="ruleForm.menuUrl" style="width:60%;" placeholder="请输入菜单路径"/>
+        <el-input v-model="ruleForm.menuUrl" style="width:60%;" placeholder="请输入菜单路径" />
       </el-form-item>
       <el-form-item label="菜单排序" prop="orderBy">
-        <el-input v-model="ruleForm.orderBy" style="width:60%;" placeholder="请输入菜单排序(数字类型)" oninput="value=value.replace(/[^\d]/g,'')"/>
+        <el-input v-model="ruleForm.orderBy" style="width:60%;" placeholder="请输入菜单排序(数字类型)" oninput="value=value.replace(/[^\d]/g,'')" />
       </el-form-item>
       <el-form-item label="菜单编码" prop="menuCode">
-        <el-input v-model="ruleForm.menuCode" style="width:60%;" placeholder="请输入菜单编码"/>
+        <el-input v-model="ruleForm.menuCode" style="width:60%;" placeholder="请输入菜单编码" />
       </el-form-item>
       <el-form-item label="菜单图标" prop="menuImg">
-        <el-input v-model="ruleForm.menuImg" style="width:60%;" placeholder="请输入菜单Icon相应的name"/>
+        <el-input v-model="ruleForm.menuImg" style="width:60%;" placeholder="请输入菜单Icon相应的name" />
       </el-form-item>
       <el-form-item label="菜单备注" prop="menuRemark">
         <el-input
@@ -61,15 +61,18 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">保存</el-button>
-        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">重置</el-button>
+        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">
+          保存
+        </el-button>
+        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">
+          重置
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'AddUser',
   props: {},
@@ -220,7 +223,7 @@ export default {
                   type: 'warning',
                 })
               }
-            }).catch(err => {
+            }).catch((err) => {
               console.log(err)
             })
           } else {
@@ -239,7 +242,7 @@ export default {
                   type: 'warning',
                 })
               }
-            }).catch(err => {
+            }).catch((err) => {
               console.log(err)
             })
           }
@@ -252,5 +255,6 @@ export default {
   },
 }
 </script>
+
 <style lang="less" scoped>
 </style>

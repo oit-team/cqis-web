@@ -1,6 +1,6 @@
 <template>
   <div id="taskList" class="pageCommonStyle">
-    <vc-search
+    <VcSearch
       ref="child"
       style="display:none"
       :head-tit-arr="headTitArr"
@@ -11,16 +11,18 @@
       @sendData="showChildData"
     />
     <div class="operateBtn">
-      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" icon="el-icon-plus" type="primary" @click="addMenu">新增菜单</el-button>
+      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" icon="el-icon-plus" type="primary" @click="addMenu">
+        新增菜单
+      </el-button>
     </div>
-    <el-divider/>
+    <el-divider />
     <el-table
       :data="tableData"
       style="width: 100%;margin-bottom: 20px;"
       row-key="menuId"
       border
       default-expand-all
-      :tree-props="{children: 'childrenMenu', hasChildren: 'true'}"
+      :tree-props="{ children: 'childrenMenu', hasChildren: 'true' }"
     >
       <el-table-column
         type="index"
@@ -28,12 +30,12 @@
         width="50"
       />
       <el-table-column
-        v-for="(item,index) in headTitArr"
+        v-for="(item, index) in headTitArr"
         :key="index"
         show-overflow-tooltip
         sortable
         :min-width="GLOBAL.minCellWidth"
-        :width="item.fieldKey==='landlineNum'?'160px':''"
+        :width="item.fieldKey === 'landlineNum' ? '160px' : ''"
         :prop="item.fieldKey"
         :label="item.fieldName"
       />
@@ -50,7 +52,7 @@
               icon="el-icon-edit"
               class="editBtnOnly"
               circle
-              @click="editMenuItem(scope.row,scope.$index)"
+              @click="editMenuItem(scope.row, scope.$index)"
             />
           </el-tooltip>
           <el-tooltip v-if="scope.row.menuType !== 2 && btnRole.indexOf(GLOBAL.btnRole.DelBtn) != -1" class="item" effect="dark" content="删除" placement="top">
@@ -60,7 +62,7 @@
               icon="el-icon-delete"
               class="delBtnOnly"
               circle
-              @click="delMenuItem(scope.row,scope.$index)"
+              @click="delMenuItem(scope.row, scope.$index)"
             />
           </el-tooltip>
           <el-tooltip
@@ -90,13 +92,13 @@
       :before-close="handleClose"
     >
       <div
-        v-for="(tag,index) in dynamicTags"
+        v-for="(tag, index) in dynamicTags"
         :key="index"
         class="tabBox"
       >
         <el-input
           v-show="tag.edit"
-          :ref="'editableInput' + index"
+          :ref="`editableInput${index}`"
           v-model="tag.name"
           class="input-new-tag"
           size="small"
@@ -122,7 +124,9 @@
         @keyup.enter.native="handleInputConfirm"
         @blur="handleInputConfirm"
       />
-      <el-button class="button-new-tag" size="small" @click="showInput">+ 添加按钮权限</el-button>
+      <el-button class="button-new-tag" size="small" @click="showInput">
+        + 添加按钮权限
+      </el-button>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleClose">取 消</el-button>
         <el-button type="primary" @click="addMenuButton">确 定</el-button>
@@ -199,7 +203,7 @@ export default {
   },
   mounted() {
     this.pageNum = 1
-    this.dynamicParam.forEach(el => {
+    this.dynamicParam.forEach((el) => {
       if (el.key === 'pageNum') {
         el.value = this.pageNum
       }
@@ -355,7 +359,7 @@ export default {
     },
     showInput() {
       this.inputVisible = true
-      this.$nextTick(_ => {
+      this.$nextTick((_) => {
         this.$refs.saveTagInput.$refs.input.focus()
       })
     },
@@ -371,7 +375,7 @@ export default {
       this.dynamicTags[index].edit = true
       const ref = `editableInput${index}`
       console.log(ref)
-      this.$nextTick(_ => {
+      this.$nextTick((_) => {
         this.$refs[ref][0].$refs.input.focus()
       })
     },
@@ -390,6 +394,7 @@ export default {
   },
 }
 </script>
+
 <style scoped>
    .el-tag + .el-tag {
       margin-left: 10px;

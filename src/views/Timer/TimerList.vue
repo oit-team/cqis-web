@@ -1,6 +1,6 @@
 <template>
   <div id="taskList" class="pageCommonStyle">
-    <vc-search
+    <VcSearch
       ref="child"
       :head-tit-arr="headTitArr"
       :page-num="pageNum"
@@ -10,9 +10,11 @@
       @sendData="showChildData"
     />
     <div class="operateBtn">
-      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" icon="el-icon-plus" type="primary" @click="addTimer">新增定时器</el-button>
+      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" icon="el-icon-plus" type="primary" @click="addTimer">
+        新增定时器
+      </el-button>
     </div>
-    <el-divider/>
+    <el-divider />
     <el-table
       v-loading="loading"
       element-loading-text="拼命加载中..."
@@ -26,12 +28,12 @@
         width="50"
       />
       <el-table-column
-        v-for="(item,index) in headTitArrNew"
+        v-for="(item, index) in headTitArrNew"
         :key="index"
         show-overflow-tooltip
         sortable
         :min-width="GLOBAL.minCellWidth"
-        :width="item.fieldKey === 'prevFireTime' || item.fieldKey === 'nextFirlTime'?'146px':''"
+        :width="item.fieldKey === 'prevFireTime' || item.fieldKey === 'nextFirlTime' ? '146px' : ''"
         :prop="item.fieldKey"
         :label="item.fieldName"
       >
@@ -52,7 +54,7 @@
           <span v-if="scopeType.row.type === 1">远程任务</span>
         </template>
         <template v-else-if="item.fieldKey == 'content'" scope="scopeContent">
-          <span v-if="scopeContent.row.content&&isJson(scopeContent.row.content)">{{ JSON.parse(scopeContent.row.content).url }}</span>
+          <span v-if="scopeContent.row.content && isJson(scopeContent.row.content)">{{ JSON.parse(scopeContent.row.content).url }}</span>
           <span v-else>{{ scopeContent.row.content }}</span>
         </template>
       </el-table-column>
@@ -69,7 +71,7 @@
               icon="el-icon-edit"
               class="editBtnOnly"
               circle
-              @click="editMenuItem(scope.row,scope.$index)"
+              @click="editMenuItem(scope.row, scope.$index)"
             />
           </el-tooltip>
           <el-tooltip v-if="scope.row.status === 0 && btnRole.indexOf(GLOBAL.btnRole.PubBtn) != -1" class="item" effect="dark" content="发布" placement="top">
@@ -79,7 +81,7 @@
               icon="el-icon-s-promotion"
               class="authBtnOnly"
               circle
-              @click="issueTimerItem(scope.row,scope.$index,1)"
+              @click="issueTimerItem(scope.row, scope.$index, 1)"
             />
           </el-tooltip>
           <el-tooltip v-if="scope.row.status === 0 && btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" class="item" effect="dark" content="删除" placement="top">
@@ -89,7 +91,7 @@
               icon="el-icon-delete"
               class="delBtnOnly"
               circle
-              @click="delMenuItem(scope.row,scope.$index)"
+              @click="delMenuItem(scope.row, scope.$index)"
             />
           </el-tooltip>
           <el-tooltip v-if="scope.row.status === 1 && btnRole.indexOf(GLOBAL.btnRole.OffBtn) != -1" class="item" effect="dark" content="下线" placement="top">
@@ -99,7 +101,7 @@
               icon="el-icon-minus"
               class="delBtnOnly"
               circle
-              @click="issueTimerItem(scope.row,scope.$index,0)"
+              @click="issueTimerItem(scope.row, scope.$index, 0)"
             />
           </el-tooltip>
         </template>
@@ -179,7 +181,7 @@ export default {
   },
   mounted() {
     this.pageNum = 1
-    this.dynamicParam.forEach(el => {
+    this.dynamicParam.forEach((el) => {
       if (el.key === 'pageNum') {
         el.value = this.pageNum
       }
@@ -258,7 +260,7 @@ export default {
       if (array[1] !== '*') {
         if (type === -1 && array[0] === '0') {
           const value = array[1]
-          if (value.indexOf('/') > -1) {
+          if (value.includes('/')) {
             const a = value.split('/')
             datetimeStr = a[1]
             type = '6'
@@ -273,7 +275,7 @@ export default {
       if (array[0] !== '*') {
         if (type === -1) {
           const last = array[0]
-          if (last.indexOf('/') > -1) {
+          if (last.includes('/')) {
             const aa = last.split('/')
             datetimeStr = aa[1]
             type = '7'
@@ -358,7 +360,7 @@ export default {
             }
             if (_this.tableData.length === 0 && _this.total > 0) {
               _this.pageNum -= 1
-              _this.dynamicParam.forEach(el => {
+              _this.dynamicParam.forEach((el) => {
                 if (el.key === 'pageNum') {
                   el.value = _this.pageNum
                 }
@@ -398,7 +400,7 @@ export default {
     },
     handleSizeChange(val) {
       this.pageSize = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageSize') {
           el.value = this.pageSize
         }
@@ -407,7 +409,7 @@ export default {
     },
     handleCurrentChange(val) {
       this.pageNum = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageNum') {
           el.value = this.pageNum
         }

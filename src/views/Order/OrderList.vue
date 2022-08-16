@@ -1,6 +1,6 @@
 <template>
   <div id="taskList" class="pageCommonStyle">
-    <vc-search
+    <VcSearch
       ref="child"
       style="margin-bottom:26px"
       :head-tit-arr="headTitArr"
@@ -11,7 +11,7 @@
       @changeLoading="changeLoad"
       @sendData="showChildData"
     />
-    <el-divider/>
+    <el-divider />
     <el-table
       v-loading="loading"
       style="width: 100%"
@@ -25,7 +25,7 @@
         width="50"
       />
       <el-table-column
-        v-for="(item,index) in headTitArrNew"
+        v-for="(item, index) in headTitArrNew"
         :key="index"
         show-overflow-tooltip
         sortable
@@ -46,7 +46,7 @@
               type="success"
               icon="el-icon-view"
               circle
-              @click="$router.push({name: 'OrderInfo', params: { item: scope.row, host: '' }})"
+              @click="$router.push({ name: 'OrderInfo', params: { item: scope.row, host: '' } })"
             />
           </el-tooltip>
         </template>
@@ -130,7 +130,7 @@ export default {
   },
   mounted() {
     this.pageNum = 1
-    this.dynamicParam.forEach(el => {
+    this.dynamicParam.forEach((el) => {
       if (el.key === 'pageNum') {
         el.value = this.pageNum
       }
@@ -177,7 +177,7 @@ export default {
     },
     handleSizeChange(val) {
       this.pageSize = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageSize') {
           el.value = this.pageSize
         }
@@ -186,7 +186,7 @@ export default {
     },
     handleCurrentChange(val) {
       this.pageNum = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageNum') {
           el.value = this.pageNum
         }

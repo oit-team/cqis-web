@@ -2,7 +2,7 @@
   <div class="about">
     <div class="iframeBox">
       <iframe id="iframe" scrolling="auto" frameborder="0" class="trend-container2" :src="iframeUrl"></iframe>
-      <vc-audio/>
+      <VcAudio />
     </div>
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
   #iframe{
     width:635px;

@@ -1,13 +1,13 @@
 <template>
   <div id="addRole" class="pageCommonStyle">
-    <el-page-header :content="title" @back="goBack"/>
-    <el-divider/>
+    <el-page-header :content="title" @back="goBack" />
+    <el-divider />
     <el-transfer
       v-model="associatedUser"
       filterable
       filter-placeholder="请输入用户名称"
       :data="allUserList"
-      :props="{key:'id',label:'name'}"
+      :props="{ key: 'id', label: 'name' }"
       :titles="['未授权用户', '已授权用户']"
       :button-texts="['取消', '授权']"
       @change="handleChange"

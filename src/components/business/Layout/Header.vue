@@ -17,8 +17,8 @@
         <el-menu-item
           v-for="(item, index) in menuList"
           :key="index"
-          :index="''+item.menuId"
-          @click="pageTo( item )"
+          :index="`${item.menuId}`"
+          @click="pageTo(item)"
         >
           {{ item.menuName }}
         </el-menu-item>
@@ -29,8 +29,12 @@
             {{ userName }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item class="dropdown-item--primary" @click.native="ChangePwd">修改密码</el-dropdown-item>
-            <el-dropdown-item class="dropdown-item--primary" @click.native="logout">退出登录</el-dropdown-item>
+            <el-dropdown-item class="dropdown-item--primary" @click.native="ChangePwd">
+              修改密码
+            </el-dropdown-item>
+            <el-dropdown-item class="dropdown-item--primary" @click.native="logout">
+              退出登录
+            </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -62,7 +66,9 @@
           </el-form-item>
         </el-form>
         <div style="width: 80%;margin:0 auto;">
-          <el-button style="width:100%" type="primary" @click="ChangePwd('ruleForm')">修改密码</el-button>
+          <el-button style="width:100%" type="primary" @click="ChangePwd('ruleForm')">
+            修改密码
+          </el-button>
         </div>
       </el-drawer>
     </div>

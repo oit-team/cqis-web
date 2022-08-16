@@ -7,13 +7,13 @@
       @select="selectMenu"
     >
       <template v-for="item in menuList">
-        <el-submenu v-if="item.childrenMenu&&item.childrenMenu.length > 0" :key="item.menuId" :index="item.menuId">
+        <el-submenu v-if="item.childrenMenu && item.childrenMenu.length > 0" :key="item.menuId" :index="item.menuId">
           <template slot="title">
             <i :class="[item.menuImg]"></i>
             <span slot="title">{{ item.menuName }}</span>
           </template>
           <template v-for="(val, i) in item.childrenMenu">
-            <el-submenu v-if="val.childrenMenu&&item.childrenMenu.length > 0" :key="i" :index="val.menuId">
+            <el-submenu v-if="val.childrenMenu && item.childrenMenu.length > 0" :key="i" :index="val.menuId">
               <template slot="title">
                 <span slot="title">{{ val.menuName }}</span>
               </template>

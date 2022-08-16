@@ -1,7 +1,7 @@
 <template>
   <div id="LogInfo" class="pageCommonStyle">
-    <el-page-header :content="title" @back="goBack"/>
-    <el-divider/>
+    <el-page-header :content="title" @back="goBack" />
+    <el-divider />
     <el-form
       ref="ruleForm"
       :model="ruleForm"
@@ -9,32 +9,46 @@
       label-position="left"
     >
       <el-form-item label="窗口标题">
-        <p style="width:80%">{{ ruleForm.title }}</p>
+        <p style="width:80%">
+          {{ ruleForm.title }}
+        </p>
       </el-form-item>
       <el-form-item label="计算机名">
-        <p style="width:80%">{{ ruleForm.agent_name }}</p>
+        <p style="width:80%">
+          {{ ruleForm.agent_name }}
+        </p>
       </el-form-item>
       <!--      <el-form-item label="日志内容">
         <p style="width:80%">{{ruleForm.content}}</p>
       </el-form-item> -->
       <el-form-item label="应用程序名">
-        <p style="width:80%">{{ ruleForm.program }}</p>
+        <p style="width:80%">
+          {{ ruleForm.program }}
+        </p>
       </el-form-item>
       <el-form-item label="进程描述">
-        <p style="width:80%">{{ ruleForm.program_desc }}</p>
+        <p style="width:80%">
+          {{ ruleForm.program_desc }}
+        </p>
       </el-form-item>
       <el-form-item label="服务IP">
-        <p style="width:80%">{{ ruleForm.server_ip }}</p>
+        <p style="width:80%">
+          {{ ruleForm.server_ip }}
+        </p>
       </el-form-item>
       <el-form-item label="日志内容">
-        <p style="width:80%">{{ ruleForm.content }}</p>
+        <p style="width:80%">
+          {{ ruleForm.content }}
+        </p>
       </el-form-item>
       <el-form-item label="时间">
-        <p style="width:80%">{{ ruleForm.server_time }}</p>
+        <p style="width:80%">
+          {{ ruleForm.server_time }}
+        </p>
       </el-form-item>
       <el-form-item label="视频">
         <div id="completeDiv">
-          <VideoPlay :session-no="sessionNo" :current-host="ruleForm.cdaServiceUrl"/>
+          <VideoPlay :session-no="sessionNo" :current-host="ruleForm.cdaServiceUrl" />
         </div>
       </el-form-item>
     </el-form>
@@ -42,7 +56,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'LogInfo',
   props: {},
@@ -76,6 +89,7 @@ export default {
   },
 }
 </script>
+
 <style scoped lang="scss">
 #LogInfo {
   display: flex;

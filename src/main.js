@@ -82,7 +82,7 @@ router.beforeEach((to, from, next) => {
 })
 // 请求拦截器
 axios.interceptors.request.use(
-  config => {
+  (config) => {
     if (!config.headers.aid) {
       config.headers.aid = sessionStorage.aid
     }
@@ -91,7 +91,7 @@ axios.interceptors.request.use(
     }
     return config
   },
-  error => {
+  (error) => {
     return Promise.reject(error)
   },
 )
@@ -151,5 +151,5 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  render: h => h(App),
 }).$mount('#app')

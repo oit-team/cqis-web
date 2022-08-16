@@ -1,7 +1,7 @@
 <template>
   <div id="addTimer" class="pageCommonStyle">
-    <el-page-header :content="title" @back="goBack"/>
-    <el-divider/>
+    <el-page-header :content="title" @back="goBack" />
+    <el-divider />
     <el-form
       ref="ruleForm"
       style="margin-top: 20px"
@@ -11,7 +11,7 @@
       label-position="left"
     >
       <el-form-item label="任务名称" prop="name">
-        <el-input v-model="ruleForm.name" placeholder="请输入任务名称" style="width:60%;"/>
+        <el-input v-model="ruleForm.name" placeholder="请输入任务名称" style="width:60%;" />
       </el-form-item>
       <el-form-item label="执行时间" prop="timer">
         <el-select
@@ -22,7 +22,7 @@
           @change="timerTypeChange"
         >
           <el-option
-            v-for="(item,index) in timerTypeList"
+            v-for="(item, index) in timerTypeList"
             :key="index"
             :label="item.label"
             :value="item.key"
@@ -96,7 +96,7 @@
         </div>
       </el-form-item>
       <el-form-item label="执行地址" prop="content">
-        <el-input v-model="ruleForm.content" placeholder="请输入任务执行地址" style="width:60%;"/>
+        <el-input v-model="ruleForm.content" placeholder="请输入任务执行地址" style="width:60%;" />
       </el-form-item>
       <el-form-item v-if="editFlag" label="任务状态" prop="status">
         <el-select
@@ -106,7 +106,7 @@
           style="width:60%;"
         >
           <el-option
-            v-for="(item,index) in statusList"
+            v-for="(item, index) in statusList"
             :key="index"
             :label="item.label"
             :value="item.key"
@@ -123,15 +123,18 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">保存</el-button>
-        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">重置</el-button>
+        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">
+          保存
+        </el-button>
+        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">
+          重置
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'AddTimer',
   props: {},
@@ -256,7 +259,7 @@ export default {
       if (array[1] !== '*') {
         if (type === -1 && array[0] === '0') {
           const value = array[1]
-          if (value.indexOf('/') > -1) {
+          if (value.includes('/')) {
             const a = value.split('/')
             datetimeStr = a[1]
             type = '6'
@@ -271,7 +274,7 @@ export default {
       if (array[0] !== '*') {
         if (type === -1) {
           const last = array[0]
-          if (last.indexOf('/') > -1) {
+          if (last.includes('/')) {
             const aa = last.split('/')
             datetimeStr = aa[1]
             type = '7'
@@ -295,7 +298,7 @@ export default {
         let start = null
         let end = null
         const timerArray = []
-        if (timerStr.indexOf(' ') > -1) {
+        if (timerStr.includes(' ')) {
           const array = timerStr.split(' ')
           if (array.length > 0) {
             start = array[0]
@@ -307,7 +310,7 @@ export default {
           end = timerStr
         }
         if (start != null) {
-          if (start.indexOf('-') > -1) {
+          if (start.includes('-')) {
             const array = start.split('-')
             if (array.length === 1) {
               timerArray.push(null)
@@ -333,7 +336,7 @@ export default {
           timerArray.push(null)
         }
         if (end != null) {
-          if (end.indexOf(':') > -1) {
+          if (end.includes(':')) {
             const array = end.split(':')
             if (array.length === 3) {
               timerArray.push(array[0])
@@ -414,7 +417,7 @@ export default {
                   type: 'warning',
                 })
               }
-            }).catch(err => {
+            }).catch((err) => {
               console.log(err)
             })
           } else {
@@ -433,7 +436,7 @@ export default {
                   type: 'warning',
                 })
               }
-            }).catch(err => {
+            }).catch((err) => {
               console.log(err)
             })
           }
@@ -446,6 +449,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
   .timerItem{
     display: inline-block;

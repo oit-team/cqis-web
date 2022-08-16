@@ -1,7 +1,7 @@
 <template>
   <div id="addRole" class="pageCommonStyle">
-    <el-page-header :content="title" @back="goBack"/>
-    <el-divider/>
+    <el-page-header :content="title" @back="goBack" />
+    <el-divider />
     <el-form
       ref="ruleForm"
       style="margin-top: 20px"
@@ -11,7 +11,7 @@
       label-position="left"
     >
       <el-form-item label="部门名称" prop="deptName">
-        <el-input v-model="ruleForm.deptName" placeholder="部门名称" style="width:60%;"/>
+        <el-input v-model="ruleForm.deptName" placeholder="部门名称" style="width:60%;" />
       </el-form-item>
       <el-form-item label="父级部门" prop="path">
         <el-cascader
@@ -19,7 +19,7 @@
           :disabled="editFlag"
           placeholder="请选择父级部门(不选默认添加根部门)"
           :options="DeptOptions"
-          :props="{ checkStrictly: true, value: 'deptCode', label: 'deptName', children: 'childrenDept'}"
+          :props="{ checkStrictly: true, value: 'deptCode', label: 'deptName', children: 'childrenDept' }"
           clearable
         />
       </el-form-item>
@@ -33,15 +33,18 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">保存</el-button>
-        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">重置</el-button>
+        <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">
+          保存
+        </el-button>
+        <el-button v-if="!editFlag" size="small" icon="el-icon-refresh" @click="resetForm('ruleForm')">
+          重置
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'AddUser',
   props: {},
@@ -139,7 +142,7 @@ export default {
                   type: 'warning',
                 })
               }
-            }).catch(err => {
+            }).catch((err) => {
               console.log(err)
             })
           } else {
@@ -158,7 +161,7 @@ export default {
                   type: 'warning',
                 })
               }
-            }).catch(err => {
+            }).catch((err) => {
               console.log(err)
             })
           }
@@ -171,5 +174,6 @@ export default {
   },
 }
 </script>
+
 <style lang="less" scoped>
 </style>

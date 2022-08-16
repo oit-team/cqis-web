@@ -22,11 +22,15 @@
         @click="clickAudio"
       />
       <el-button ref="Btn" type="text" @click="startPlayOrPause">
-        <span v-if="audio['playing'] === false" class="iconfont el-icon-csairel-start"></span>
-        <span v-else-if="audio['playing'] === true" class="iconfont el-icon-csairel-stop"></span>
+        <span v-if="audio.playing === false" class="iconfont el-icon-csairel-start"></span>
+        <span v-else-if="audio.playing === true" class="iconfont el-icon-csairel-stop"></span>
       </el-button>
-      <el-tag type="info">{{ realFormatSecond(audio.currentTime) }}</el-tag>
-      <el-tag type="info">{{ realFormatSecond(audio.maxTime) }}</el-tag>
+      <el-tag type="info">
+        {{ realFormatSecond(audio.currentTime) }}
+      </el-tag>
+      <el-tag type="info">
+        {{ realFormatSecond(audio.maxTime) }}
+      </el-tag>
     </div>
     <el-button @click="setSrc">
       修改路径
@@ -68,7 +72,7 @@ export default {
       this.activeUrl = 'http://127.0.0.1:8000/console/play/audio.wav'
       console.log(this.activeUrl)
       this.$nextTick(() => {
-        	this.$refs.audio.load()
+        this.$refs.audio.load()
         this.$refs.audio.play()
       })
     },

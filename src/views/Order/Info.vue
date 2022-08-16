@@ -10,8 +10,10 @@
     </div>
     <el-divider />
     <div>
-      <figure class="pb-4" v-if="item._playRemark.audio">
-        <figcaption class="text-lg font-bold mb-2">语音：</figcaption>
+      <figure v-if="item._playRemark.audio" class="pb-4">
+        <figcaption class="text-lg font-bold mb-2">
+          语音：
+        </figcaption>
         <audio
           class="w-1/2"
           controls
@@ -20,7 +22,9 @@
         </audio>
       </figure>
       <figure v-if="item._playRemark.video">
-        <figcaption class="text-lg font-bold mb-2">视频：</figcaption>
+        <figcaption class="text-lg font-bold mb-2">
+          视频：
+        </figcaption>
         <VideoPlay class="border border-gray-500" :session-no="item._playRemark.video[0].sessionNo" :current-host="item.cdaVideoServiceUrl" />
       </figure>
     </div>

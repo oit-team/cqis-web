@@ -1,10 +1,12 @@
 <template>
   <div id="taskList" class="pageCommonStyle">
-    <vc-search/>
+    <VcSearch />
     <div class="operateBtn">
-      <el-button size="small" icon="el-icon-plus" class="addBtnOnly" type="primary">新增用户</el-button>
+      <el-button size="small" icon="el-icon-plus" class="addBtnOnly" type="primary">
+        新增用户
+      </el-button>
     </div>
-    <el-divider/>
+    <el-divider />
     <el-table
       :data="tableData"
       border
@@ -51,8 +53,12 @@
         width="100"
       >
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
+          <el-button type="text" size="small" @click="handleClick(scope.row)">
+            查看
+          </el-button>
+          <el-button type="text" size="small">
+            编辑
+          </el-button>
         </template>
       </el-table-column>
     </el-table>

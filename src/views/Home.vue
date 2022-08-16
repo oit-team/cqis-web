@@ -5,17 +5,13 @@
 </template>
 
 <script>
-import VcLayout from '@/components/business/Layout'
-
 export default {
   name: 'Home',
-  components: {
-    VcLayout,
-  },
   created() {
   },
 }
 </script>
+
 <style lang="scss" scoped>
   .home{
     text-align:center

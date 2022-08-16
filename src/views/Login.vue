@@ -4,7 +4,7 @@
       <div class="content">
         <div class="LoginBox">
           <div class="head_img">
-            <img src="../assets/images/LOGO.png"/>
+            <img src="../assets/images/LOGO.png" />
           </div>
           <el-form ref="ruleForm" :model="ruleForm" :rules="rules">
             <el-form-item prop="employeeNum">
@@ -32,7 +32,7 @@
                 placeholder="验证码"
                 @keyup.enter.native="login('ruleForm')"
               />
-              <img class="checkCodeImg" :src="checkCodeUrl" alt="" @click="loadCheckCodeUrl"/>
+              <img class="checkCodeImg" :src="checkCodeUrl" alt="" @click="loadCheckCodeUrl" />
             </el-form-item>
             <el-form-item v-if="isShowPhoneCode" prop="PhoneCode">
               <el-input
@@ -43,11 +43,15 @@
                 placeholder="手机验证码"
                 @keyup.enter.native="login('ruleForm')"
               />
-              <el-button style="float: right;" :disabled="PhoneBtnMsg !== '获取验证码'" type="primary" @click="getPhoneCode()">{{ PhoneBtnMsg }}</el-button>
+              <el-button style="float: right;" :disabled="PhoneBtnMsg !== '获取验证码'" type="primary" @click="getPhoneCode()">
+                {{ PhoneBtnMsg }}
+              </el-button>
             </el-form-item>
           </el-form>
           <div class="loginBtn">
-            <el-button class="btn_submit" type="primary" @click="login('ruleForm')">登录</el-button>
+            <el-button class="btn_submit" type="primary" @click="login('ruleForm')">
+              登录
+            </el-button>
           </div>
         </div>
       </div>
@@ -56,13 +60,8 @@
 </template>
 
 <script>
-import VcAudio from '../components/basic/VueAudio'
-
 export default {
   name: 'Login',
-  components: {
-    VcAudio,
-  },
   props: {},
   data() {
     return {
@@ -95,12 +94,6 @@ export default {
             message: '请输入密码',
           },
         ],
-        passWord: [
-          {
-            required: true,
-            message: '请输入密码',
-          },
-        ],
         PhoneCode: [
           {
             required: true,
@@ -119,7 +112,7 @@ export default {
   watch: {},
   created() {
     this.getLocalHost()
-    Object.keys(this.ruleForm).map(key => {
+    Object.keys(this.ruleForm).map((key) => {
       return false
     })
   },
@@ -145,7 +138,7 @@ export default {
             type: 'warning',
           })
         }
-      }).catch(err => {
+      }).catch((err) => {
         console.log(err)
       })
     },
@@ -181,7 +174,7 @@ export default {
             type: 'warning',
           })
         }
-      }).catch(err => {
+      }).catch((err) => {
         console.log(err)
       })
     },
@@ -251,9 +244,9 @@ export default {
       if (RTCP) {
         const rtc = new RTCP()
         rtc.createDataChannel('')
-        rtc.createOffer(offerDesc => {
+        rtc.createOffer((offerDesc) => {
           rtc.setLocalDescription(offerDesc)
-        }, e => {
+        }, (e) => {
         })
         rtc.onicecandidate = (evt) => {
           if (evt.candidate) {
@@ -270,6 +263,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
   .content{
     position: absolute;

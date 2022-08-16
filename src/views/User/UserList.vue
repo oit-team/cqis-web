@@ -1,16 +1,21 @@
 <template>
   <div id="taskList" class="pageCommonStyle">
-    <vc-search
+    <VcSearch
       ref="child"
-      :headTitArr='headTitArr'
-      :pageNum='pageNum'
-      :pageSize='pageSize'
-      :requestUrl='requestUrl'
-      @changeLoading='changeLoad'
-      @sendData='showChildData'/>
+      :head-tit-arr="headTitArr"
+      :page-num="pageNum"
+      :page-size="pageSize"
+      :request-url="requestUrl"
+      @changeLoading="changeLoad"
+      @sendData="showChildData"
+    />
     <div class="operateBtn">
-      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" @click="addUser" icon="el-icon-plus" type="primary">新增用户</el-button>
-      <el-button icon="el-icon-download" size="small" type="success" @click="dialogVisible = true">导入用户</el-button>
+      <el-button v-if="btnRole.indexOf(GLOBAL.btnRole.AddBtn) != -1" size="small" icon="el-icon-plus" type="primary" @click="addUser">
+        新增用户
+      </el-button>
+      <el-button icon="el-icon-download" size="small" type="success" @click="dialogVisible = true">
+        导入用户
+      </el-button>
     </div>
     <el-divider></el-divider>
     <el-table
@@ -18,25 +23,28 @@
       element-loading-text="拼命加载中..."
       :data="tableData"
       border
-      style="width: 100%">
+      style="width: 100%"
+    >
       <el-table-column
         type="index"
         :index="indexMethod"
-        width="50">
+        width="50"
+      >
       </el-table-column>
       <el-table-column
+        v-for="(item, index) in headTitArrNew"
+        :key="index"
         show-overflow-tooltip
         sortable
-        v-for="(item,index) in headTitArrNew"
-        :key="index"
         :min-width="GLOBAL.minCellWidth"
         :prop="item.fieldKey"
-        :label="item.fieldName">
-        <template scope="scopeStatus" v-if="item.fieldKey === 'status'">
+        :label="item.fieldName"
+      >
+        <template v-if="item.fieldKey === 'status'" scope="scopeStatus">
           <span v-if="scopeStatus.row.status === 1">有效</span>
           <span v-else-if="scopeStatus.row.status === 2">无效</span>
         </template>
-        <template scope="scope" v-else-if="item.fieldKey === 'accountType'">
+        <template v-else-if="item.fieldKey === 'accountType'" scope="scope">
           <span v-if="scope.row.accountType === 2">临时用户</span>
           <span v-else-if="scope.row.accountType === 1">正式用户</span>
         </template>
@@ -44,7 +52,8 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="100">
+        width="100"
+      >
         <template slot-scope="scope">
           <el-tooltip v-if="btnRole.indexOf(GLOBAL.btnRole.EditBtn) != -1" class="item" effect="dark" content="编辑" placement="top">
             <el-button
@@ -53,7 +62,8 @@
               icon="el-icon-edit"
               class="editBtnOnly"
               circle
-              @click="editUserItem(scope.row,scope.$index)"></el-button>
+              @click="editUserItem(scope.row, scope.$index)"
+            ></el-button>
           </el-tooltip>
           <el-tooltip v-if="btnRole.indexOf(GLOBAL.btnRole.DelBtn) != -1" class="item" effect="dark" content="删除" placement="top">
             <el-button
@@ -61,32 +71,35 @@
               type="danger"
               icon="el-icon-delete"
               class="delBtnOnly"
-              @click="delUserItem(scope.row,scope.$index)"
-              circle>
+              circle
+              @click="delUserItem(scope.row, scope.$index)"
+            >
             </el-button>
           </el-tooltip>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
       :current-page="pageNum"
       :page-sizes="[15, 20, 30]"
       :page-size="100"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="total">
+      :total="total"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    >
     </el-pagination>
     <el-dialog
       title="导入用户"
       :visible.sync="dialogVisible"
-      :close-on-click-modal='true'
+      :close-on-click-modal="true"
       width="60%"
-      :before-close="handleClose">
+      :before-close="handleClose"
+    >
       <div>
         <el-upload
-          class="upload-demo"
           ref="upload"
+          class="upload-demo"
           accept=".xlsx,.xls"
           :limit="1"
           :on-exceed="handleExceed"
@@ -97,15 +110,20 @@
           :action="UploadAction"
           :before-upload="BeforeUpload"
           :on-success="OnSuccess"
-          :on-error="OnError">
-          <el-button size="small" type="primary">选取文件</el-button>
-          <div slot="tip" class="el-upload__tip"><span><a :href="downLoadUrl">点击下载模板</a> , </span>只能上传xlsx/xls文件，且不超过2MB</div>
+          :on-error="OnError"
+        >
+          <el-button size="small" type="primary">
+            选取文件
+          </el-button>
+          <div slot="tip" class="el-upload__tip">
+            <span><a :href="downLoadUrl">点击下载模板</a> , </span>只能上传xlsx/xls文件，且不超过2MB
+          </div>
         </el-upload>
       </div>
       <span slot="footer" class="dialog-footer">
-          <el-button @click="handleClose">取 消</el-button>
-          <el-button type="primary" @click="submitUpload">确 定</el-button>
-        </span>
+        <el-button @click="handleClose">取 消</el-button>
+        <el-button type="primary" @click="submitUpload">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
@@ -122,7 +140,7 @@ export default {
   },
   data() {
     return {
-      downLoadUrl:'',
+      downLoadUrl: '',
       fileList: [],
       dialogVisible: false,
       UploadData: {
@@ -140,14 +158,15 @@ export default {
       loading: true,
       tableData: [],
       headTitArr: [],
-      btnRole:[],
+      btnRole: [],
     }
   },
-  computed:{
+  computed: {
     headTitArrNew() {
       return this.headTitArr.filter(item => !item.noTableShow)
     },
   },
+  watch: {},
   created() {
     const btnRole = this.$store.state.pageBtnRole.find((el) => {
       return el.menuUrl == this.$route.fullPath
@@ -183,7 +202,7 @@ export default {
     this.UploadAction = this.Api.importDataInfo
     this.UploadData.userId = sessionStorage.aid
     this.pageNum = 1
-    this.dynamicParam.forEach(el => {
+    this.dynamicParam.forEach((el) => {
       if (el.key === 'pageNum') {
         el.value = this.pageNum
       }
@@ -219,7 +238,6 @@ export default {
       }
     })
   },
-  watch: {},
   methods: {
     editUserItem(item, index) {
       this.editIndex = index
@@ -249,7 +267,7 @@ export default {
             }
             if (_this.tableData.length === 0 && _this.total > 0) {
               _this.pageNum -= 1
-              _this.dynamicParam.forEach(el => {
+              _this.dynamicParam.forEach((el) => {
                 if (el.key === 'pageNum') {
                   el.value = _this.pageNum
                 }
@@ -289,7 +307,7 @@ export default {
     },
     handleSizeChange(val) {
       this.pageSize = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageSize') {
           el.value = this.pageSize
         }
@@ -298,7 +316,7 @@ export default {
     },
     handleCurrentChange(val) {
       this.pageNum = val
-      this.dynamicParam.forEach(el => {
+      this.dynamicParam.forEach((el) => {
         if (el.key === 'pageNum') {
           el.value = this.pageNum
         }
@@ -314,17 +332,17 @@ export default {
       return (index + 1) + ((this.pageNum - 1) * this.pageSize)
     },
     BeforeUpload(file) {
-      const pointIndex = file.name.lastIndexOf(".");
-      const fileType = file.name.substring(pointIndex+1);   //获取到文件后缀名
-      const isXlsx = fileType === 'xlsx' || fileType === 'xls';
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const pointIndex = file.name.lastIndexOf('.')
+      const fileType = file.name.substring(pointIndex + 1) // 获取到文件后缀名
+      const isXlsx = fileType === 'xlsx' || fileType === 'xls'
+      const isLt2M = file.size / 1024 / 1024 < 2
       if (!isXlsx) {
-        this.$message.error('上传文件只能是xlsx/xls格式!');
+        this.$message.error('上传文件只能是xlsx/xls格式!')
       }
       if (!isLt2M) {
-        this.$message.error('上传文件大小不能超过 2MB!');
+        this.$message.error('上传文件大小不能超过 2MB!')
       }
-      return isXlsx && isLt2M;
+      return isXlsx && isLt2M
     },
     OnSuccess(res) {
       this.$message({
@@ -340,18 +358,19 @@ export default {
       })
     },
     handleExceed(files, fileList) {
-      this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
     },
     handleClose() {
       this.fileList = []
       this.dialogVisible = false
     },
     submitUpload() {
-      this.$refs.upload.submit();
+      this.$refs.upload.submit()
     },
   },
 }
 </script>
+
 <style lang="scss" scoped>
 .upload-demo{
   display: inline-block;

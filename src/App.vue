@@ -1,18 +1,12 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
-<script>
-import VcLayout from '@/components/business/Layout'
-import VcHome from '@/views/Home'
 
+<script>
 export default {
   name: 'App',
-  components: {
-    VcLayout,
-    VcHome,
-  },
   created() {
     sessionStorage.times = '1'
     if (window.performance.navigation.type === 1) {
