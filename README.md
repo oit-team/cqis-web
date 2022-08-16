@@ -2,17 +2,15 @@
 
 ## 项目指令
 
-> 使用 [yarn](https://yarnpkg.com) 管理包
-
 ```shell
 # 安装依赖
-yarn install
+pnpm install
 # 启动服务
-yarn serve
+pnpm serve
 # 构建
-yarn build
+pnpm build
 # eslint检测
-yarn lint
+pnpm lint
 ```
 
 ## 项目结构
@@ -51,7 +49,3 @@ yarn lint
 * 组件文件名的应为大驼峰（PascalCase）
 * 基础组件名使用`Vc`做前缀，如：`VcButton`，`v`表示vue，`c`表示组件
 * 在模板中，使用kebab-case表示组件，如`<vc-button></vc-button>`
-
-> 已应用以下eslint规则  
-> [eslint-plugin-vue](https://eslint.vuejs.org) recommended  
-> [airbnb](https://github.com/airbnb/javascript) [中文指南](https://lin-123.github.io/javascript)
