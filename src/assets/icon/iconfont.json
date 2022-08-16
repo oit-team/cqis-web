@@ -1,0 +1,23 @@
+{
+  "id": "3285406",
+  "name": "南航",
+  "font_family": "iconfont",
+  "css_prefix_text": "el-icon-csair",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7594152",
+      "name": "24gf-pause2",
+      "font_class": "el-stop",
+      "unicode": "ea81",
+      "unicode_decimal": 60033
+    },
+    {
+      "icon_id": "18289155",
+      "name": "开始1",
+      "font_class": "el-start",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    }
+  ]
+}
