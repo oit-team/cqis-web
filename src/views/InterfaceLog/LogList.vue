@@ -7,23 +7,49 @@
       :page-num="pageNum"
       :page-size="pageSize"
       :request-url="requestUrl"
-      :other-data="userEmployeeNum"
+      :other-data="{
+        keyword,
+        keywordType,
+      }"
       @changeLoading="changeLoad"
       @sendData="showChildData"
-    />
+      @clear="() => {
+        keyword = ''
+        keywordType = ''
+      }"
+    >
+      <template v-slot:field:keyword>
+        <el-input
+          class="keyword-input"
+          v-model="keyword"
+          placeholder="请输入内容"
+          prefix-icon="el-icon-search"
+          clearable
+        >
+          <el-select slot="prepend" v-model="keywordType" placeholder="请选择">
+            <el-option label="全部" value=""></el-option>
+            <el-option :label="item.dictitemValue" :value="item.dictitemKey" v-for="item of typeList" :key="item.dictitemKey"></el-option>
+          </el-select>
+        </el-input>
+      </template>
+    </VcSearch>
     <el-divider />
     <el-table
       v-loading="loading"
+      style="width: 100%"
       element-loading-text="拼命加载中..."
       :data="tableData"
       border
-      style="width: 100%"
     >
       <el-table-column
         type="index"
         :index="indexMethod"
-        width="50"
-      />
+        width="60"
+      >
+        <template slot="header">
+          <FieldsFilterPopover :fields="headTitArr" @change="headTitArrNew = $event" />
+        </template>
+      </el-table-column>
       <el-table-column
         v-for="(item, index) in headTitArrNew"
         :key="index"
@@ -66,10 +92,12 @@
 
 <script>
 import VcSearch from '../../components/basic/CommonSearch'
+import FieldsFilterPopover from './components/FieldsFilterPopover'
 
 export default {
   components: {
     VcSearch,
+    FieldsFilterPopover,
   },
   props: {
     msg: String,
@@ -85,14 +113,13 @@ export default {
       loading: true,
       tableData: [],
       headTitArr: [],
+      headTitArrNew: [],
       userEmployeeNum: {},
       btnRole: [],
+      keyword: '',
+      keywordType: '',
+      typeList: [],
     }
-  },
-  computed: {
-    headTitArrNew() {
-      return this.headTitArr.filter(item => !item.noTableShow)
-    },
   },
   watch: {},
   created() {
@@ -133,6 +160,7 @@ export default {
       }
     })
     this.$refs.child.parentMsgs(this.dynamicParam)
+    this.getKeywordType()
   },
   activated() {
     if (sessionStorage.headTitString) {
@@ -146,6 +174,13 @@ export default {
     }
   },
   methods: {
+    getKeywordType() {
+      this.$axios.post(this.Api.getDictitemInfo, this.GLOBAL.paramJson({})).then((res) => {
+        if (res.data.head.status === 0) {
+          this.typeList = res.data.body.resultList
+        }
+      })
+    },
     LogInfo(item, index) {
       this.$router.push({
         path: '/interfacelog/loginfo',
@@ -198,8 +233,8 @@ export default {
 
 <style lang="scss">
   .expandBox{
-    padding:0 50px;
     max-width:900px;
+    padding:0 50px;
     p{
       line-height: 28px;
       span{
@@ -207,5 +242,10 @@ export default {
         margin-right:4px;
       }
     }
+  }
+
+  .keyword-input .el-select .el-input__inner {
+    width: 130px;
+    padding: 0 30px 0 10px;
   }
 </style>

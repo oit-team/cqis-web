@@ -48,7 +48,7 @@
       </el-form-item>
       <el-form-item label="视频">
         <div id="completeDiv">
-          <VideoPlay :session-no="sessionNo" :current-host="ruleForm.cdaServiceUrl" />
+          <VideoPlay :session-no="sessionNo" :current-host="ruleForm.cdaServiceUrl" :position="ruleForm.offsettime" />
         </div>
       </el-form-item>
     </el-form>

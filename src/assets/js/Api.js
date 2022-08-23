@@ -1,4 +1,4 @@
-const baseURL = process.env.BASE_URL
+const baseURL = process.env.VUE_APP_BASE_URL
 const system = `${baseURL}/user-server`
 const timer = `${baseURL}/task-server`
 const work = `${baseURL}/work-server`
@@ -56,6 +56,7 @@ const getWorkList = `${system}/work/getWorkList`// 工单查询
 const queryLogs = `${system}/operLog/queryLogs`// 日志查询
 const getKey = `${system}/sm2/getKey`// 日志查询
 const callInterface = `${work}/logQuery/callInterface`// 行为日志查询
+const getDictitemInfo = `${work}/logQuery/getDictitemInfo`// 关键字
 export default {
   userTemplate,
   getAllMenuList,
@@ -111,4 +112,5 @@ export default {
   queryLogs,
   getKey,
   callInterface,
+  getDictitemInfo,
 }

@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@babel/eslint-parser': ^7.16.5
   '@oit/eslint-config': ^0.3.2
   '@vue/cli-plugin-babel': ~4.5.0
   '@vue/cli-plugin-eslint': ~5.0.8
@@ -41,7 +40,6 @@ dependencies:
   vuex: 3.6.2_vue@2.7.8
 
 devDependencies:
-  '@babel/eslint-parser': 7.18.9_eslint@8.22.0
   '@oit/eslint-config': 0.3.2_eslint@8.22.0
   '@vue/cli-plugin-babel': 4.5.19_co5okxmme2qz3y7hmlytk6mv5a
   '@vue/cli-plugin-eslint': 5.0.8_jfnqlreghmpbpfbdpnwceabwcq
@@ -119,19 +117,6 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@babel/eslint-parser/7.18.9_eslint@8.22.0:
-    resolution: {integrity: sha512-KzSGpMBggz4fKbRbWLNyPVTuQr6cmCcBhOyXTw/fieOVaw5oYAwcAj4a7UKcDYCPxQq+CG1NCDZH9e2JTXquiQ==}
-    engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
-    peerDependencies:
-      '@babel/core': '>=7.11.0'
-      eslint: ^7.5.0 || ^8.0.0
-    dependencies:
-      eslint: 8.22.0
-      eslint-scope: 5.1.1
-      eslint-visitor-keys: 2.1.0
-      semver: 6.3.0
     dev: true
 
   /@babel/generator/7.18.12:

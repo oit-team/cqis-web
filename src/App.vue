@@ -8,6 +8,7 @@
 export default {
   name: 'App',
   created() {
+    console.log(process.env.VUE_APP_BASE_URL)
     sessionStorage.times = '1'
     if (window.performance.navigation.type === 1) {
       this.$router.replace({

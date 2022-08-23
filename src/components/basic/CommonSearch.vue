@@ -9,14 +9,16 @@
                 <div v-if="item.fieldType == '文本'" class="searchTit">
                   {{ item.fieldName }}
                 </div>
-                <el-input
-                  v-if="item.fieldType == '文本'"
-                  v-model="item.searchValKey"
-                  placeholder="请输入搜索内容"
-                  prefix-icon="el-icon-search"
-                  clearable
-                  @keyup.enter.native="clickSearch()"
-                />
+                <slot :name="`field:${item.fieldKey}`">
+                  <el-input
+                    v-if="item.fieldType == '文本'"
+                    v-model="item.searchValKey"
+                    placeholder="请输入搜索内容"
+                    prefix-icon="el-icon-search"
+                    clearable
+                    @keyup.enter.native="clickSearch()"
+                  />
+                </slot>
               </div>
               <div v-if="item.fieldType == '值列'">
                 <div v-if="item.fieldType == '值列'" class="searchTit">
@@ -243,7 +245,9 @@ export default {
         })
       }
     },
-    clearSearch(curCmd) {
+    async clearSearch(curCmd) {
+      this.$emit('clear')
+      await this.$nextTick()
       const PageNum = curCmd || 1
       this.$emit('changeLoading', true)
       this.pMsg.forEach((el) => {
@@ -384,7 +388,7 @@ export default {
           // background-color: pink;
           flex-wrap: wrap;
           >div{
-            width:300px;
+            width:350px;
             display:flex;
             align-items:center;
             margin-bottom:10px;
@@ -394,14 +398,14 @@ export default {
             text-align: center;
           }
           .el-input__inner{
-            width:216px!important;
+            width:266px!important;
           }
 
           .el-input {
-            width: 216px!important;
+            width: 266px!important;
           }
           .el-select{
-            width: 216px!important;
+            width: 266px!important;
           }
         }
       }
