@@ -15,7 +15,7 @@
       @sendData="showChildData"
       @clear="() => {
         keyword = ''
-        keywordType = ''
+        keywordType = 'all'
       }"
     >
       <template v-slot:field:keyword>
@@ -27,7 +27,7 @@
           clearable
         >
           <el-select slot="prepend" v-model="keywordType" placeholder="请选择">
-            <el-option label="全部" value=""></el-option>
+            <el-option label="全部" value="all"></el-option>
             <el-option :label="item.dictitemValue" :value="item.dictitemKey" v-for="item of typeList" :key="item.dictitemKey"></el-option>
           </el-select>
         </el-input>
@@ -117,7 +117,7 @@ export default {
       userEmployeeNum: {},
       btnRole: [],
       keyword: '',
-      keywordType: '',
+      keywordType: 'all',
       typeList: [],
     }
   },
@@ -204,6 +204,10 @@ export default {
       }
       if (pageNum) {
         this.pageNum = pageNum
+      }
+      if (total === 0) {
+        this.total = 0
+        this.pageNum = 1
       }
     },
     handleSizeChange(val) {

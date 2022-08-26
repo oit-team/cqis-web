@@ -47,6 +47,8 @@ export default {
             this.menuList = res.data.body.resultMap
             this.addPathArr(this.menuList)
             sessionStorage.homeMenuPathArr = this.pathArr
+            const cdaItem = this.menuList.find(item => item.menuName === 'CDA')
+            sessionStorage.cdaLoginUrl = cdaItem && cdaItem.menuUrl
             this.$store.commit('setPageBtnRole', this.pageBtnRole)
           } else {
             _this.$message({
