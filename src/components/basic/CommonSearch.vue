@@ -104,6 +104,7 @@
 </template>
 
 <script>
+let searchCache = ''
 export default {
   name: 'CommonSearch',
   props: {
@@ -186,6 +187,18 @@ export default {
       this.searchList()
     },
     searchList() {
+      let page = undefined
+      try {
+        const headArrStr = JSON.stringify(this.headArr)
+        if (searchCache !== headArrStr) {
+          page = 1
+          this.pMsg[0].value = 1
+        }
+        searchCache = JSON.stringify(this.headArr)
+      } catch {
+        // skip
+      }
+
       this.$emit('changeLoading', true)
       let con1 = ''
       this.headArr.forEach((el) => {
@@ -240,7 +253,7 @@ export default {
               })
             }
             _this.total = res.data.body.count
-            _this.$emit('sendData', _this.tableData, _this.total, _this.tableEmptyText)
+            _this.$emit('sendData', _this.tableData, _this.total, _this.tableEmptyText, page)
           }
         })
       }
@@ -312,6 +325,12 @@ export default {
           _this.$emit('sendData', _this.tableData, _this.total, _this.tableEmptyText, PageNum)
         }
       })
+
+      try {
+        searchCache = JSON.stringify(this.headArr)
+      } catch {
+        // skip
+      }
     },
   },
 }

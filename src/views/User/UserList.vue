@@ -349,11 +349,25 @@ export default {
       return isXlsx && isLt2M
     },
     OnSuccess(res) {
-      this.$message({
-        message: res.head.msg,
-        type: 'success',
-      })
       this.handleClose()
+      if (res.head.status === 0) {
+        this.$message({
+          message: res.head.msg,
+          type: 'success',
+        })
+      } else {
+        const h = this.$createElement;
+        this.$msgbox({
+          title: '错误消息',
+          message: h('ul', {
+            style: {
+              maxHeight: '500px',
+              overflow: 'auto',
+            }
+          }, res.body.msgList.map(item => h('li', item))),
+          confirmButtonText: '确定',
+        })
+      }
     },
     OnError(res) {
       this.$message({

@@ -19,24 +19,6 @@
       border
       style="width: 100%"
     >
-      <el-table-column type="expand">
-        <template slot-scope="props">
-          <div class="expandBox">
-            <p>
-              <span>请求地址:</span>
-              {{ props.row.operIp + props.row.operUri }}
-            </p>
-            <p>
-              <span>请求参数:</span>
-              {{ props.row.operRequest }}
-            </p>
-            <p>
-              <span>响应参数:</span>
-              {{ props.row.operResponse }}
-            </p>
-          </div>
-        </template>
-      </el-table-column>
       <el-table-column
         type="index"
         :index="indexMethod"

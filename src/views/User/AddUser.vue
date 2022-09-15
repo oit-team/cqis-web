@@ -16,30 +16,6 @@
       <el-form-item label="组织名称" prop="job">
         <el-input v-model="ruleForm.job" placeholder="请输入组织名称" style="width:60%;" />
       </el-form-item>
-      <el-form-item label="有效日期" prop="failureTime">
-        <el-date-picker
-          v-model="ruleForm.failureTime"
-          style="width:60%;"
-          type="datetime"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          placeholder="请选择有效日期"
-        />
-      </el-form-item>
-      <el-form-item v-if="editFlag" label="用户状态" prop="status">
-        <el-select
-          v-model="ruleForm.status"
-          filterable
-          placeholder="请选择用户状态"
-          style="width:60%;"
-        >
-          <el-option
-            v-for="(item, index) in statusList"
-            :key="index"
-            :label="item.label"
-            :value="item.key"
-          />
-        </el-select>
-      </el-form-item>
       <el-form-item>
         <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">
           保存
@@ -81,22 +57,12 @@ export default {
     }
     return {
       editFlag: false,
-      statusList: [
-        {
-          key: 1,
-          label: '有效',
-        },
-        {
-          key: 2,
-          label: '无效',
-        },
-      ],
       title: '',
       UserId: '',
       ruleForm: {
         employeeNum: '',
         job: '',
-        failureTime: '',
+        status: 1,
       },
       rules: {
         employeeNum: [
@@ -105,9 +71,6 @@ export default {
         ],
         job: [
           { required: true, message: '请输入组织名称', trigger: 'blur' },
-        ],
-        failureTime: [
-          { required: true, message: '请输入有效日期', trigger: 'blur' },
         ],
       },
     }
@@ -140,7 +103,6 @@ export default {
             employeeNum: _this.ruleForm.employeeNum,
             name: _this.ruleForm.name,
             job: _this.ruleForm.job,
-            failureTime: _this.ruleForm.failureTime,
           }
           if (_this.editFlag) {
             con.id = _this.ruleForm.id

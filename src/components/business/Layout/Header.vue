@@ -139,6 +139,7 @@ export default {
       const jsonParam = _this.GLOBAL.paramJson(con)
       _this.$axios.post(_this.Api.logout, jsonParam).then((res) => {
         if (res.data.head.status === 0) {
+          this.cdaLogout()
           _this.$message({
             message: res.data.head.msg,
             type: 'success',
@@ -151,6 +152,16 @@ export default {
           })
         }, 1000)
       })
+    },
+    cdaLogout() {
+      const iframe = document.createElement('iframe')
+      const origin = new URL(sessionStorage.cdaLoginUrl).origin
+
+      iframe.style.display = 'none'
+      iframe.src = `${origin}/console/sign-out-cda.html`
+      iframe.onload = iframe.remove
+
+      document.body.appendChild(iframe)
     },
     ChangePwd() {
       window.location.href = 'https://ids.csair.com/ids/custom/ChangePassword.jsp'
