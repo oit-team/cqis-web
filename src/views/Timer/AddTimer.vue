@@ -143,10 +143,6 @@ export default {
       timerType: '',
       timerTypeList: [
         {
-          key: 1,
-          label: '只执行一次',
-        },
-        {
           key: 2,
           label: '每年执行一次',
         },
