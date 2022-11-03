@@ -45,7 +45,7 @@
         width="128"
       >
         <template slot-scope="scope">
-          <el-tooltip v-if="scope.row.menuType !== 2 && btnRole.indexOf(GLOBAL.btnRole.EditBtn) != -1" class="item" effect="dark" content="编辑" placement="top">
+          <el-tooltip v-if="scope.row.menuType !== 2 && btnRole.indexOf(GLOBAL.btnRole.EditBtn) != -1 && scope.row.isUpdate === 0" class="item" effect="dark" content="编辑" placement="top">
             <el-button
               size="mini"
               type="primary"
