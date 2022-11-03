@@ -181,7 +181,7 @@ export default {
           path: val.menuUrl,
         })
       } else if (val.menuType === 1) {
-        window.open(`${val.menuUrl}?data=${sessionStorage.cdaMsg}`)
+        window.open(`${val.menuUrl}?data=${sessionStorage.cdaMsg}&t=${Date.now()}`)
       }
     },
   },
