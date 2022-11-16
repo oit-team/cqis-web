@@ -39,51 +39,6 @@
         :prop="item.fieldKey"
         :label="item.fieldName"
       />
-      <el-table-column
-        fixed="right"
-        label="操作"
-        width="128"
-      >
-        <template slot-scope="scope">
-          <el-tooltip v-if="scope.row.menuType !== 2 && btnRole.indexOf(GLOBAL.btnRole.EditBtn) != -1 && scope.row.isUpdate === 0" class="item" effect="dark" content="编辑" placement="top">
-            <el-button
-              size="mini"
-              type="primary"
-              icon="el-icon-edit"
-              class="editBtnOnly"
-              circle
-              @click="editMenuItem(scope.row, scope.$index)"
-            />
-          </el-tooltip>
-          <el-tooltip v-if="scope.row.menuType !== 2 && btnRole.indexOf(GLOBAL.btnRole.DelBtn) != -1" class="item" effect="dark" content="删除" placement="top">
-            <el-button
-              size="mini"
-              type="danger"
-              icon="el-icon-delete"
-              class="delBtnOnly"
-              circle
-              @click="delMenuItem(scope.row, scope.$index)"
-            />
-          </el-tooltip>
-          <el-tooltip
-            v-if="btnRole.indexOf(GLOBAL.btnRole.AuthBtn) != -1"
-            v-show="isShowBtn(scope.row)"
-            class="item"
-            effect="dark"
-            content="按钮权限"
-            placement="top"
-          >
-            <el-button
-              size="mini"
-              type="warning"
-              icon="el-icon-thumb"
-              class="authBtnOnly"
-              circle
-              @click="authBtn(scope.row)"
-            />
-          </el-tooltip>
-        </template>
-      </el-table-column>
     </el-table>
     <el-dialog
       :title="dialogTitle"
