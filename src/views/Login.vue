@@ -34,7 +34,7 @@
               />
               <img class="checkCodeImg" :src="checkCodeUrl" alt="" @click="loadCheckCodeUrl" />
             </el-form-item>
-            <el-form-item v-if="isShowPhoneCode" prop="PhoneCode">
+            <!-- <el-form-item v-if="isShowPhoneCode" prop="PhoneCode">
               <el-input
                 v-model.trim="ruleForm.PhoneCode"
                 type="test"
@@ -46,7 +46,7 @@
               <el-button style="float: right;" :disabled="PhoneBtnMsg !== '获取验证码'" type="primary" @click="getPhoneCode()">
                 {{ PhoneBtnMsg }}
               </el-button>
-            </el-form-item>
+            </el-form-item> -->
           </el-form>
           <div class="loginBtn">
             <el-button class="btn_submit" type="primary" @click="login('ruleForm')">
