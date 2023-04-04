@@ -355,17 +355,22 @@ export default {
           message: res.head.msg,
           type: 'success',
         })
-      } else {
-        const h = this.$createElement;
+      } else if (res.body) {
+        const h = this.$createElement
         this.$msgbox({
           title: '错误消息',
           message: h('ul', {
             style: {
               maxHeight: '500px',
               overflow: 'auto',
-            }
+            },
           }, res.body.msgList.map(item => h('li', item))),
           confirmButtonText: '确定',
+        })
+      } else {
+        this.$message({
+          message: res.head.msg,
+          type: 'error',
         })
       }
     },
