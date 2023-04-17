@@ -29,9 +29,9 @@
             {{ userName }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item class="dropdown-item--primary" @click.native="ChangePwd">
+            <!-- <el-dropdown-item class="dropdown-item--primary" @click.native="ChangePwd">
               修改密码
-            </el-dropdown-item>
+            </el-dropdown-item> -->
             <el-dropdown-item class="dropdown-item--primary" @click.native="logout">
               退出登录
             </el-dropdown-item>
