@@ -154,14 +154,8 @@ export default {
       })
     },
     cdaLogout() {
-      const iframe = document.createElement('iframe')
-      const origin = new URL(sessionStorage.cdaLoginUrl).origin
-
-      iframe.style.display = 'none'
-      iframe.src = `${origin}/console/sign-out-cda.html`
-      iframe.onload = iframe.remove
-
-      document.body.appendChild(iframe)
+      const cdaOrigin = new URL(sessionStorage.cdaLoginUrl).origin
+      window.location.href = `${cdaOrigin}/console/sign-out-cda.html?redirect=${encodeURIComponent(window.location.origin)}`
     },
     ChangePwd() {
       window.location.href = 'https://ids.csair.com/ids/custom/ChangePassword.jsp'
