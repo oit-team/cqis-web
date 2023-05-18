@@ -47,7 +47,7 @@
         </p>
       </el-form-item>
       <el-form-item label="视频">
-        <div id="completeDiv">
+        <div v-if="sessionNo" id="completeDiv">
           <VideoPlay :session-no="sessionNo" :current-host="ruleForm.cdaServiceUrl" :position="ruleForm.offsettime" />
         </div>
       </el-form-item>
@@ -63,13 +63,8 @@ export default {
     return {
       title: '查看详情',
       ruleForm: '',
+      sessionNo: '',
     }
-  },
-  computed: {
-    sessionNo() {
-      const { videoUrl } = this.$route.query.item
-      return videoUrl.match(/sid=(.*?)&/)[1]
-    },
   },
   watch: {},
   created() {
@@ -80,11 +75,24 @@ export default {
       this.ruleForm = this.$route.query.item
     }
   },
-  mounted() {},
-  activated() {},
+  mounted() {
+    this.getSessionNo()
+  },
+  activated() {
+  },
   methods: {
     goBack() {
       this.$router.go(-1)
+    },
+    async getSessionNo() {
+      const { videoUrl } = this.$route.query.item
+      const sessionNo = videoUrl.match(/sid=(.*?)&/)[1]
+      const { data } = await this.$axios.post('/work-server/logQuery/getEncryptSessionId', this.GLOBAL.paramJson({
+        session_id: sessionNo,
+      }))
+      if (data.head.status !== 0)
+        return
+      this.sessionNo = data.body.session_id
     },
   },
 }
