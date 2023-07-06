@@ -8,7 +8,7 @@
       :rules="rules"
       :model="ruleForm"
       label-width="90px"
-      label-position="left"
+      label-position="right"
     >
       <el-form-item label="用户工号" prop="employeeNum">
         <el-input v-model="ruleForm.employeeNum" :disabled="editFlag" placeholder="请输入用户工号" style="width:100%;" />
@@ -73,6 +73,9 @@
           </el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="员工姓名">
+        <el-input v-model="ruleForm.name" placeholder="请输入员工姓名" style="width:100%;" />
+      </el-form-item>
       <el-form-item>
         <el-button size="small" icon="el-icon-check" type="primary" @click="submitForm('ruleForm')">
           保存
@@ -124,6 +127,7 @@ export default {
         roleId: '', // CDA角色
         orgId: '', // CDA部门
         rId: '', // 系统角色
+        name: '',
       },
       cdaOrgDefList: [],
       cdaOrgRoleList: [],
@@ -147,6 +151,9 @@ export default {
         ],
         roleId: [
           { required: true, message: '请输入CAD角色', trigger: 'blur' },
+        ],
+        rId: [
+          { required: true, message: '请输入系统角色', trigger: 'blur' },
         ],
       },
     }
