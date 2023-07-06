@@ -29,9 +29,9 @@
             {{ userName }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item class="dropdown-item--primary" @click.native="ChangePwd">
+            <!-- <el-dropdown-item class="dropdown-item--primary" @click.native="ChangePwd">
               修改密码
-            </el-dropdown-item>
+            </el-dropdown-item> -->
             <el-dropdown-item class="dropdown-item--primary" @click.native="logout">
               退出登录
             </el-dropdown-item>
@@ -154,14 +154,8 @@ export default {
       })
     },
     cdaLogout() {
-      const iframe = document.createElement('iframe')
-      const origin = new URL(sessionStorage.cdaLoginUrl).origin
-
-      iframe.style.display = 'none'
-      iframe.src = `${origin}/console/sign-out-cda.html`
-      iframe.onload = iframe.remove
-
-      document.body.appendChild(iframe)
+      const cdaOrigin = new URL(sessionStorage.cdaLoginUrl).origin
+      window.location.href = `${cdaOrigin}/console/sign-out-cda.html?redirect=${encodeURIComponent(window.location.origin)}`
     },
     ChangePwd() {
       window.location.href = 'https://ids.csair.com/ids/custom/ChangePassword.jsp'
