@@ -19,6 +19,9 @@ const getAllUsers = `${system}/user/getAllUsers`
 const insertUser = `${system}/user/insertUser`
 const delUserById = `${system}/user/delUserById`
 const updateUserById = `${system}/user/updateUserById`
+const getCdaOrgDef = `${system}/user/getCdaOrgDef`
+const getCdaRoleIds = `${system}/user/getCdaRoleIds`
+const getRoleUser = `${system}/user/getRoleUser`
 const verifyUserName = `${system}/user/verifyUserName`
 const addUserAndRole = `${system}/user/addUserAndRole`
 const importDataInfo = `${system}/excelPublic/importDataInfo`// 导入用户
@@ -75,6 +78,9 @@ export default {
   insertUser,
   delUserById,
   updateUserById,
+  getCdaOrgDef,
+  getCdaRoleIds,
+  getRoleUser,
   verifyUserName,
   addUserAndRole,
   importDataInfo,

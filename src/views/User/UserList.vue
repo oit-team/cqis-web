@@ -234,7 +234,7 @@ export default {
           _this.$refs.child.resetSearch(_this.dynamicParam, _this.pageNum)
         })
       } else {
-        _this.$set(_this.tableData, _this.editIndex, data)
+        this.$refs.child.clickSearch()
       }
     })
   },
